@@ -479,7 +479,7 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <h1 id="重要的是-你愿意"><a href="#重要的是-你愿意" class="headerlink" title="重要的是 你愿意"></a>重要的是 你愿意</h1>
+        <h1 id="重要的是-你愿意吗？"><a href="#重要的是-你愿意吗？" class="headerlink" title="重要的是 你愿意吗？"></a>重要的是 你愿意吗？</h1>
       </div>
       <div class="post-tags-categories">
         
@@ -736,9 +736,6 @@
           <h2>橘子</h2>
         
         
-          <p>如果你愿意</p>
-
-        
         
           <p><span id="jinrishici-sentence">xiaoawei</span></p>
           <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
@@ -819,7 +816,7 @@
   <div class='content'>
     <div class="toc-main">
       <div class="toc-content">
-        <!-- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%87%8D%E8%A6%81%E7%9A%84%E6%98%AF-%E4%BD%A0%E6%84%BF%E6%84%8F"><span class="toc-text">重要的是 你愿意</span></a></li></ol> -->
+        <!-- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%87%8D%E8%A6%81%E7%9A%84%E6%98%AF-%E4%BD%A0%E6%84%BF%E6%84%8F%E5%90%97%EF%BC%9F"><span class="toc-text">重要的是 你愿意吗？</span></a></li></ol> -->
         <div class="toc"></div>
       </div>
     </div>
@@ -1700,6 +1697,10 @@
   
     <!-- 弹幕所需的css和js -->
     
+  <!-- 弹幕插件 -->
+  <link href="/js/danmu/barrager.css" rel="stylesheet">
+  <script src="/js/danmu/jquery.barrager.js"></script>
+
 <!-- 具体js，请前往valine/script.ejs查看 -->
 
     <script>
@@ -1738,7 +1739,7 @@
         }
       }
       //查询评论 valine.Q('*').limit(7) -- 查询所有，限制7条, 下面的的代码是查询当前页面
-      var themeDanmu = eval('false');
+      var themeDanmu = eval('true');
       var themeLoop = eval('false');
       var themeLooperTime = '5000' || 5000;
       var speed = '40' || 20;
@@ -1818,6 +1819,10 @@
   };
   $(document).ready(load_valine);
   document.addEventListener('pjax:send', function (e) {
+    
+      $('.danmuBox').length > 0 && $('.danmuBox').remove()
+      looperValine && clearInterval(looperValine);
+      $.fn.barrager.removeAll();
     
   })
   document.addEventListener('pjax:complete', function () {

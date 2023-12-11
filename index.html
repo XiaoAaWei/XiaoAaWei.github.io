@@ -1130,7 +1130,7 @@
         :data="listData"
         :class-option="classOption"
         class="warp"
-        style="height: 30px"
+        style="height: 60px"
       >
         <ul class="index-notice-content__ul">
           
@@ -1139,14 +1139,31 @@
               
                 <div class="index-notice-content__title">
                   
-                    <a href="/archives" title="左下角，请听 回忆是甜的芥末" style="">
-                      左下角，请听 回忆是甜的芥末
+                    <a href="/archives" title="左下角，请听歌" style="">
+                      左下角，请听歌
                     </a>
                   
                 </div>
                 
                   <div class="index-notice-content__date" style="">
                     2023-11-11
+                  </div>
+                
+              
+            </li>
+          
+            <li>
+              
+                <div class="index-notice-content__title">
+                  
+                    <span title="跟我走吧！" style="">
+                      跟我走吧！
+                    </span>
+                  
+                </div>
+                
+                  <div class="index-notice-content__date" style="">
+                    2020-05-21
                   </div>
                 
               
@@ -1165,7 +1182,7 @@
 <script>
   var seamless = JSON.parse('false');
   seamless = seamless ? 0 : 30;
-  var listData = '[object Object]' || '';
+  var listData = '[object Object],[object Object]' || '';
   listData = listData.split(',');
   var vm = new Vue({
     el: '#appIndexNotice',
@@ -1243,7 +1260,7 @@
             </a>
           </div>
           <div class="post-content">
-            重要的是 你愿意
+            重要的是 你愿意吗？
           </div>
         </div>
         <div class="post-more">
@@ -1278,9 +1295,6 @@
         
           <h2>橘子</h2>
         
-        
-          <p>如果你愿意</p>
-
         
         
           <p><span id="jinrishici-sentence">xiaoawei</span></p>
@@ -1475,7 +1489,7 @@
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Mon Dec 11 2023 16:02:09 GMT+0100 (中欧标准时间)</div>
+            <div id="last-update" style="display: none;">Mon Dec 11 2023 16:17:13 GMT+0100 (中欧标准时间)</div>
             <div id="last-update-show">2023-12-11 日</div>
           
         </div>
@@ -2217,6 +2231,10 @@
   
     <!-- 弹幕所需的css和js -->
     
+  <!-- 弹幕插件 -->
+  <link href="/js/danmu/barrager.css" rel="stylesheet">
+  <script src="/js/danmu/jquery.barrager.js"></script>
+
 <!-- 具体js，请前往valine/script.ejs查看 -->
 
     <script>
@@ -2255,7 +2273,7 @@
         }
       }
       //查询评论 valine.Q('*').limit(7) -- 查询所有，限制7条, 下面的的代码是查询当前页面
-      var themeDanmu = eval('false');
+      var themeDanmu = eval('true');
       var themeLoop = eval('false');
       var themeLooperTime = '5000' || 5000;
       var speed = '40' || 20;
@@ -2335,6 +2353,10 @@
   };
   $(document).ready(load_valine);
   document.addEventListener('pjax:send', function (e) {
+    
+      $('.danmuBox').length > 0 && $('.danmuBox').remove()
+      looperValine && clearInterval(looperValine);
+      $.fn.barrager.removeAll();
     
   })
   document.addEventListener('pjax:complete', function () {
